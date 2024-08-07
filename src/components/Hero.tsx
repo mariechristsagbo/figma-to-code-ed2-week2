@@ -1,11 +1,11 @@
 export default function Hero() {
   return (
     <section className="w-full text-white font-archivo">
-      <div className="border rounded-52 py-10 my-10 text-center bg-hero bg-cover relative overflow-hidden">
+      <div className="lg:max-w-7xl rounded-52 py-10 my-10 text-center bg-hero bg-cover relative overflow-hidden px-4 mx-2 lg:mx-0">
         <div className="absolute inset-0 bg-b-black bg-opacity-40"></div>
         <div className="relative flex flex-col space-y-5 px-4 py-12">
           <p>We bring new fashion to the world</p>
-          <h1 className="text-5xl font-extrabold leading-normal font-chillax">
+          <h1 className="md:text-5xl text-2xl font-extrabold leading-normal font-chillax">
             DISCOVER THE LATEST FASHION TRENDS <br /> HERE
           </h1>
           <p className="max-w-2xl mx-auto">

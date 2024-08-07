@@ -14,7 +14,7 @@ export default function Discover() {
 
   return (
     <section className='font-archivo my-10'>
-      <h1 className="text-b-black text-3xl font-chillax font-bold text-center py-16">
+      <h1 className="text-b-black md:text-3xl sm:text-2xl text-xl font-chillax font-bold text-center py-16">
         Discover the latest trends in summer fashion. Shop now and refresh your wardrobe with our stylish summer shirts.
       </h1>
       <div className='pb-5 sm:flex sm:space-x-4 sm:justify-center'>
@@ -33,13 +33,13 @@ export default function Discover() {
         ))}
       </div>
 
-      <div className="max-w-7xl mx-auto py-10">
+      <div className="lg:max-w-5xl max-w-2xl mx-auto py-10">
         {loading ? (
           <div className="flex justify-center items-center min-h-[300px]">
             <Loader />
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {products.map(product => (
               <ProductCard key={product.id} product={product} />
             ))}

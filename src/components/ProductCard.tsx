@@ -3,13 +3,13 @@ import { Product } from '@/types';
 
 export function ProductCard({ product }: { product: Product }) {
   return (
-    <div className="overflow-hidden rounded-lg">
+    <div className="flex flex-col mx-auto overflow-hidden rounded-lg px-4">
       <Image 
         src={product.images.edges[0].node.src} 
         alt={product.title} 
-        width={500}
-        height={400}
-        className="object-cover rounded-32"
+        width={322}
+        height={405}
+        className="object-cover rounded-32 max-w-xs w-[322px] h-[405px]"
       />
       <div className="p-4">
         <h2 className="lg:text-2xl sm:text-xl text-lg font-semibold">{product.title}</h2>
