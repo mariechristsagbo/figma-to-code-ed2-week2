@@ -4,5 +4,10 @@
 
 .text-outline {
   color: transparent;
-  -webkit-text-stroke: 1px black;
+  -webkit-text-stroke: 1px #1D1D1D;
+}
+
+.text-outline-white {
+  color: transparent;
+  -webkit-text-stroke: 1px #ffffff;
 }

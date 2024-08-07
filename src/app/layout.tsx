@@ -1,11 +1,19 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { PropsWithChildren } from "react";
+import localFont from 'next/font/local'
 
-const inter = Inter({ subsets: ["latin"] });
+const chillax = localFont({
+  src: '../../public/fonts/Chillax-Variable.ttf',
+  variable: '--font-chillax'
+})
+
+const archivo = localFont({
+  src: '../../public/fonts/Archivo-Variable.ttf',
+  variable: '--font-archivo'
+})
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,7 +25,7 @@ export default function RootLayout({
 }: PropsWithChildren<{}>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${chillax.variable} ${archivo.variable}`}>
         <Header />
         {children}
         <Footer />

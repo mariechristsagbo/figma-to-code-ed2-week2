@@ -3,15 +3,15 @@ import { NAV_ITEMS, ACTION_ITEMS } from "@/constants";
 
 export default function Header() {
   return (
-    <header className="text-b-black">
-      <div className="w-full bg-b-black py-3">
+    <header className="text-b-black font-archivo">
+      <div className="w-full bg-b-black py-4">
         <p className="text-white text-xs text-center">
           Sign up and get 20% off for all new arrivals collections
         </p>
       </div>
 
-      <div className="border-b max-w-7xl mx-auto py-7">
-        <div className="flex items-center justify-between">
+      <div className="border-b max-w-7xl mx-auto py-7 px-4">
+        <div className="lg:flex items-center justify-between hidden">
           <nav>
             <ul className="flex items-center gap-4">
               {NAV_ITEMS.map((item, index) => (
@@ -20,7 +20,7 @@ export default function Header() {
             </ul>
           </nav>
 
-          <h1 className="text-outline text-4xl font-bold">BALLAMAS</h1>
+          <h1 className="font-chillax text-outline text-4xl font-semibold">BALLAMAS</h1>
 
           <nav>
             <ul className="flex items-center gap-4">

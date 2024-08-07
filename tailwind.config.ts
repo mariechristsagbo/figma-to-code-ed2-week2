@@ -8,14 +8,25 @@ const config: Config = {
   ],
   theme: {
     extend: {
+        fontFamily: {
+          chillax: ['var(--font-chillax)'],
+          archivo: ['var(--font-archivo)'],
+        },
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+          "hero" : "url('/images/hero.jpg')",
+          "collection-men1" : "url('/images/collection-men1.svg')",
+          "collection-men2" : "url('/images/collection-2.svg')",
       },
 
       colors: {
-        'b-black': '#1D1D1D'
+        'b-black': '#1D1D1D',
+        'b-dark-gray' : '#7E7E7E',
+        'b-gray' : '#C3C3C3',
+      },
+
+      borderRadius: {
+        '52': '52px',
+        '32' : '32px',
       }
     },
   },
