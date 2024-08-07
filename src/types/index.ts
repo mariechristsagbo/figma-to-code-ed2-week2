@@ -1,4 +1,3 @@
-// types/index.ts
 export interface ProductImage {
     src: string;
   }
