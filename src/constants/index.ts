@@ -8,6 +8,15 @@ export const ACTION_ITEMS = [
   { name: "", icon: "/icons/search.svg" }
 ];
 
+export const ACTION_MOBILE_ITEMS = [
+  { name: "Shop", icon: null },
+  { name: "About Us", icon: null },
+  { name: "Account", icon: "/icons/account.svg" },
+  { name: "FAQ", icon: "" },
+  { name: "Contact Us", icon: "" }
+
+];
+
 export const filters_categories = [
   { name: 'All', count: 123 },
   { name: 'Accessories', count: 13 },

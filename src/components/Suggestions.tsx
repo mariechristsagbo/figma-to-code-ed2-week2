@@ -3,12 +3,10 @@ import { useProducts } from "@/hooks/useProduct";
 import { Loader } from "@/components/Loader";
 
 export default function Suggestions() {
-
   const { products, loading, error } = useProducts();
 
   return (
-    
-    <section className='font-archivo py-20 border'>
+    <section className='font-archivo py-20'>
       <h1 className='text-3xl font-semibold font-chillax'>You may also like</h1>
 
       <div className="lg:max-w-7xl max-w-2xl mx-auto py-10">
@@ -17,13 +15,15 @@ export default function Suggestions() {
             <Loader />
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="flex overflow-x-auto no-scrollbar space-x-6">
             {products.map(product => (
-              <ProductCard key={product.id} product={product} />
+              <div key={product.id} className="flex-shrink-0 w-80 md:w-96 lg:w-1/4">
+                <ProductCard product={product} />
+              </div>
             ))}
           </div>
         )}
       </div>
     </section>
-  )
+  );
 }

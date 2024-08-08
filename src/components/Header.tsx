@@ -1,7 +1,12 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
-import { NAV_ITEMS, ACTION_ITEMS } from "@/constants";
+import { NAV_ITEMS, ACTION_ITEMS, ACTION_MOBILE_ITEMS } from "@/constants";
 
 export default function Header() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <header className="text-b-black font-archivo">
       <div className="w-full bg-b-black py-4">
@@ -35,6 +40,38 @@ export default function Header() {
             </ul>
           </nav>
         </div>
+
+        {/* Mobile */}
+        <div className="flex items-center justify-between lg:hidden px-4">
+
+          <button onClick={() => setIsOpen(!isOpen)}>
+            <Image src={isOpen ? "/icons/close.svg" : "/icons/menu.svg"} alt="Menu" width={24} height={24} />
+          </button>
+          <h1 className="font-chillax text-outline sm:text-4xl text-3xl font-semibold">BALLAMAS</h1>
+          <div className="flex items-center space-x-4">
+            <Image src="/icons/search.svg" alt="Search" width={24} height={24} />
+            <Image src="/icons/cart.svg" alt="Cart" width={24} height={24} />
+          </div>
+        </div>
+      </div>
+
+      <div className={`lg:hidden ${isOpen ? "block" : "hidden"} transition-all duration-300 ease-in-out`}>
+        <nav>
+          <ul className="flex flex-col items-center gap-4 py-4">
+            {NAV_ITEMS.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+
+            {ACTION_MOBILE_ITEMS.map((item, index) => (
+              <li key={index} className="flex items-center gap-2">
+                {item.icon ? (
+                  <Image alt={item.name} src={item.icon} width={20} height={20} />
+                ) : null}
+                <span>{item.name}</span>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
     </header>
   );

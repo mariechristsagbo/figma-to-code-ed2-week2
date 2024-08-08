@@ -2,8 +2,8 @@ import { products, categories, social_media } from "@/constants";
 
 export default function Footer() {
   return (
-    <footer className='font-archivo text-white w-full bg-b-black pt-14'>
-      <div className='max-w-7xl px-4  mx-auto'>
+    <footer className='font-archivo text-white w-full bg-b-black pt-14 px-4'>
+      <div className='max-w-7xl px-4 mx-auto'>
         <div className="grid lg:grid-cols-2 grid-cols-1">
           
           <div className='flex flex-col space-y-4 max-w-lg mr-auto mb-8'>

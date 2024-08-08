@@ -24,7 +24,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
         className="object-cover rounded-32"
       />
 
-      <div className="flex flex-col space-y-6 p-4">
+      <div className="flex flex-col space-y-4 p-4">
         <h1 className="text-4xl font-semibold font-chillax">{product.title}</h1>
         <p className="font-medium text-3xl">{product.variants.edges[0].node.price.currencyCode} ${product.variants.edges[0].node.price.amount}</p>
 
@@ -43,30 +43,31 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
         </div>
 
         <div>
-          <p className="text-2xl mb-3">Size:</p>
-          <div className='space-x-4'>
-            {sizes.map((size) => (
-              <button
-                key={size}
-                onClick={() => setSelectedSize(size)}
-                className={`px-7 py-3 rounded-full transition-colors ${selectedSize === size
-                  ? 'bg-b-black text-white'
-                  : 'text-b-black border border-b-black hover:bg-b-black hover:text-white'
-                }`}>
-                <p className='text-lg'>
-                  {size}
-                </p>
-              </button>
-            ))}
-          </div>
-        </div>
+      <p className="text-2xl mb-3">Size:</p>
+      <div className="flex flex-wrap gap-3">
+        {sizes.map((size) => (
+          <button
+            key={size}
+            onClick={() => setSelectedSize(size)}
+            className={`px-7 py-3 rounded-full transition-colors 
+              ${selectedSize === size
+                ? 'bg-b-black text-white'
+                : 'text-b-black border border-b-black hover:bg-b-black hover:text-white'
+              }`}>
+            <p className='text-lg'>
+              {size}
+            </p>
+          </button>
+        ))}
+      </div>
+    </div>
 
         <div className="flex items-center gap-4">
-          <button className='px-8 py-3 rounded-full border border-b-black bg-b-black text-white w-1/2 text-sm'>
+          <button className='px-8 py-3 rounded-full border border-b-black bg-b-black text-white w-1/2 sm:text-sm text-xs'>
             BUY NOW
           </button>
 
-          <button className='px-8 py-3 rounded-full transition-colors border border-b-black hover:bg-b-black hover:text-white w-1/2 text-sm'>
+          <button className='px-8 py-3 rounded-full transition-colors border border-b-black hover:bg-b-black hover:text-white w-1/2 sm:text-sm text-[10px]'>
             ADD TO CART
           </button>
         </div>

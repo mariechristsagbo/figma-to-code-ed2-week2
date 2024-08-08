@@ -11,7 +11,7 @@ const ProductPage: React.FC = () => {
   if (error) return <div className="flex justify-center items-center h-64">{error}</div>;
 
   return (
-    <div className="max-w-7xl mx-auto py-10">
+    <div className="max-w-7xl mx-auto py-10 px-4">
       {loading ? (
         <div className="flex justify-center items-center min-h-[300px]">
           <Loader />
