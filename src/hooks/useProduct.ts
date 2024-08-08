@@ -23,9 +23,9 @@ export function useProducts() {
         setLoading(false);
       })
       .catch(error => {
-        setError('Erreur lors de la récupération des produits.');
+        setError('Error.');
         setLoading(false);
-        console.error('Erreur lors de la récupération des produits :', error);
+        // console.error('Error :', error);
       });
   }, []);
 

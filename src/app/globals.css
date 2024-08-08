@@ -11,3 +11,15 @@
   color: transparent;
   -webkit-text-stroke: 1px #ffffff;
 }
+
+.loader {
+  border-top-color: #1D1D1D;
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+

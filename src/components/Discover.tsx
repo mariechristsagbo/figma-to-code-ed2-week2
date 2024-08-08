@@ -10,7 +10,7 @@ export default function Discover() {
   const [selected, setSelected] = useState('All');
   const { products, loading, error } = useProducts();
 
-  if (error) return <p className="text-red-500 text-center py-10">{error}</p>;
+  if (error) return <p className="text-b-black font-semibold font-chillax text-center py-10">{error}</p>;
 
   return (
     <section className='font-archivo my-10'>
