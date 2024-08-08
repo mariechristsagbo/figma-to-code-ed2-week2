@@ -3,13 +3,13 @@ import { useProducts } from "@/hooks/useProduct";
 import { Loader } from "@/components/Loader";
 
 export default function Suggestions() {
-  const { products, loading, error } = useProducts();
+  const { products, loading } = useProducts();
 
   return (
     <section className='font-archivo py-20'>
-      <h1 className='text-3xl font-semibold font-chillax'>You may also like</h1>
+      <h1 className='text-3xl font-semibold font-chillax px-2'>You may also like</h1>
 
-      <div className="lg:max-w-7xl max-w-2xl mx-auto py-10">
+      <div className="lg:max-w-full max-w-2xl mx-auto py-10">
         {loading ? (
           <div className="flex justify-center items-center min-h-[300px]">
             <Loader />
