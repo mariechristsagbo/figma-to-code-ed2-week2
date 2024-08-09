@@ -32,7 +32,7 @@ export default function Header() {
           <nav>
             <ul className="flex items-center gap-4">
               {ACTION_ITEMS.map((item, index) => (
-                <li key={index} className="flex items-center gap-2">
+                <li key={index} className="flex items-center gap-2 cursor-pointer">
                   {item.icon ? (
                     <Image alt={item.name} src={item.icon} width={20} height={20} />
                   ) : null}

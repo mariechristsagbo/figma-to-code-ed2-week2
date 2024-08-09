@@ -1,9 +1,11 @@
-import { ProductCard } from "./ProductCard";
-import { useProducts } from "@/hooks/useProduct";
+import { SuggestionProductCard } from "./SuggestionProductCard";
+import { useLatestProducts } from "@/hooks/useLatestProducts";
 import { Loader } from "@/components/Loader";
 
 export default function Suggestions() {
-  const { products, loading } = useProducts();
+  const { products, loading, error } = useLatestProducts();
+
+  if (error) return <p className="text-b-black font-semibold font-chillax text-center py-10">{error}</p>;
 
   return (
     <section className='font-archivo py-20'>
@@ -15,10 +17,10 @@ export default function Suggestions() {
             <Loader />
           </div>
         ) : (
-          <div className="flex overflow-x-auto lg:overflow-x-scroll lg:scrollbar space-x-6">
+          <div className="flex overflow-x-auto no-scrollbar space-x-6">
             {products.map(product => (
               <div key={product.id} className="flex-shrink-0 w-80 md:w-96 lg:w-1/4">
-                <ProductCard product={product} />
+                <SuggestionProductCard product={product} />
               </div>
             ))}
           </div>

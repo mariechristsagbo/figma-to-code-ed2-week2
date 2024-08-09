@@ -62,7 +62,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
       </div>
     </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 py-2">
           <button className='px-8 py-3 rounded-full border border-b-black bg-b-black text-white w-1/2 sm:text-sm text-xs'>
             BUY NOW
           </button>
@@ -72,7 +72,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
           </button>
         </div>
 
-        <div className="my-7">
+        <div className="py-5">
           <p className="text-3xl font-chillax font-medium pb-3">Description</p>
           <p className="text-b-dark-gray">{product.description}</p>
         </div>

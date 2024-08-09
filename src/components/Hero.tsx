@@ -24,7 +24,7 @@ export default function Hero() {
           <h1 className="md:text-5xl text-2xl font-extrabold leading-normal font-chillax">
             DISCOVER THE LATEST FASHION TRENDS <br /> HERE
           </h1>
-          <p className="max-w-2xl mx-auto">
+          <p className="max-w-2xl mx-auto text-sm sm:text-base lg:text-lg">
             Discover a world of fashion with our meticulously curated outfits. Shop now to update your wardrobe with chic and stylish outfits.
           </p>
           <div className="flex items-center justify-center">
