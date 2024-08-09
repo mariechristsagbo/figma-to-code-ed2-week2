@@ -4,7 +4,7 @@ import { ProductCard } from "./ProductCard";
 import { useProducts } from "@/hooks/useProduct";
 import { Loader } from "@/components/Loader";
 import Button from "./Button";
-import { useFilterCategories } from "@/hooks/useFIlterCategories";
+import { useFilterCategories } from "@/hooks/useFilterCategories";
 
 export default function Discover() {
   const [selected, setSelected] = useState('All');

@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { NAV_ITEMS, ACTION_ITEMS, ACTION_MOBILE_ITEMS } from "@/constants";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
 
   return (
     <header className="text-b-black font-archivo">
@@ -25,7 +27,7 @@ export default function Header() {
             </ul>
           </nav>
 
-          <h1 className="font-chillax text-outline text-4xl font-semibold">BALLAMAS</h1>
+          <h1 className="font-chillax text-outline text-4xl font-semibold cursor-pointer" onClick={() => router.push('/')}>BALLAMAS</h1>
 
           <nav>
             <ul className="flex items-center gap-4">

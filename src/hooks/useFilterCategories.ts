@@ -51,7 +51,7 @@ export const useFilterCategories = () => {
       })
         .then(res => res.json())
         .then(data => {
-          console.log("Featured Data:", data);
+          // console.log("Featured Data:", data);
           return data?.data?.collectionByHandle?.products?.edges?.length || 0;
         });
 

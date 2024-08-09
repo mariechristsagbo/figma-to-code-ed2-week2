@@ -15,7 +15,7 @@ export default function Suggestions() {
             <Loader />
           </div>
         ) : (
-          <div className="flex overflow-x-auto no-scrollbar space-x-6">
+          <div className="flex overflow-x-auto lg:overflow-x-scroll lg:scrollbar space-x-6">
             {products.map(product => (
               <div key={product.id} className="flex-shrink-0 w-80 md:w-96 lg:w-1/4">
                 <ProductCard product={product} />

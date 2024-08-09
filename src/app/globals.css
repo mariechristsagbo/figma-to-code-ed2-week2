@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -26,13 +25,16 @@
   }
 }
 
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
+::-webkit-scrollbar {
+  height: 6px; 
+  background: transparent; 
 }
 
-.no-scrollbar {
-  -ms-overflow-style: none; 
-  scrollbar-width: none;  
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 10px; 
 }
 
-
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.4); 
+}

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Product, ProductResponse } from '@/types/Product';
 import { ALL_PRODUCTS_QUERY, COLLECTION_PRODUCTS_QUERY } from '@/queries/productQueries';
 
-export function useProducts(category: string) {
+export function useProducts(category: string ='All') {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -10,7 +10,7 @@ export function useProducts(category: string) {
   useEffect(() => {
     setLoading(true);
 
-    const query = category === 'All' ? ALL_PRODUCTS_QUERY : COLLECTION_PRODUCTS_QUERY(category.toLowerCase());
+    const query = category === 'All' ? ALL_PRODUCTS_QUERY : COLLECTION_PRODUCTS_QUERY(category?.toLowerCase());
 
     fetch('https://mock.shop/api', {
       method: 'POST',

@@ -32,7 +32,7 @@ export interface CollectionByHandle {
 
 export interface ProductResponse {
   data: {
-    collectionByHandle?: CollectionByHandle;  // Marqué comme optionnel
+    collectionByHandle?: CollectionByHandle; 
     products: {
       edges: {
         node: Product;
