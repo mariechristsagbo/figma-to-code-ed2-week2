@@ -1,14 +1,16 @@
 'use client'
 import { useState } from "react";
-import { filters_categories } from "@/constants";
 import { ProductCard } from "./ProductCard";
 import { useProducts } from "@/hooks/useProduct";
 import { Loader } from "@/components/Loader";
 import Button from "./Button";
+import { useFilterCategories } from "@/hooks/useFIlterCategories";
 
 export default function Discover() {
   const [selected, setSelected] = useState('All');
-  const { products, loading, error } = useProducts();
+  const { products, loading, error } = useProducts(selected);
+  const filtersCategories = useFilterCategories();
+
 
   if (error) return <p className="text-b-black font-semibold font-chillax text-center py-10">{error}</p>;
 
@@ -18,15 +20,15 @@ export default function Discover() {
         Discover the latest trends in summer fashion. Shop now and refresh your wardrobe with our stylish summer shirts.
       </h1>
       <div className='pb-5 sm:flex sm:space-x-4 sm:justify-center'>
-        {filters_categories.map((category) => (
+        {filtersCategories.map((category) => (
           <button
             key={category.name}
             onClick={() => setSelected(category.name)}
-            className={`px-4 py-2.5 rounded-full m-2 transition-colors ${selected === category.name
+            className={`px-3.5 py-2 rounded-full m-2 transition-colors ${selected === category.name
               ? 'bg-b-black text-white'
               : 'text-b-black border border-b-black hover:bg-b-black hover:text-white'
               }`}>
-            <p className='text-lg'>
+            <p className='text-md'>
               {category.name} <span className='text-sm'>{category.count}</span>
             </p>
           </button>

@@ -21,8 +21,18 @@ export interface Product {
   priceRange: PriceRange;
 }
 
+export interface CollectionByHandle {
+  title: string;
+  products: {
+    edges: {
+      node: Product;
+    }[];
+  };
+}
+
 export interface ProductResponse {
   data: {
+    collectionByHandle?: CollectionByHandle;  // Marqué comme optionnel
     products: {
       edges: {
         node: Product;

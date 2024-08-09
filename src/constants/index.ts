@@ -17,13 +17,6 @@ export const ACTION_MOBILE_ITEMS = [
 
 ];
 
-export const filters_categories = [
-  { name: 'All', count: 123 },
-  { name: 'Accessories', count: 13 },
-  { name: 'Featured', count: 67 },
-  { name: 'Unisex', count: 52 },
-];
-
 export const products = ["Jacket", "T-Shirt", "Jacket", "Shoes", "Sunglasses"];
 
 export const categories = ["Man", "Woman", "Kids", "Gift", "New arrival"];

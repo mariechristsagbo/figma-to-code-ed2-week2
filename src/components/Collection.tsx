@@ -16,9 +16,11 @@ export default function Collection() {
             className="object-cover w-full h-auto rounded-32"
           />
           <div className="absolute inset-x-0 bottom-0 flex justify-center p-4">
-            <button className="px-4 py-2.5 rounded-full bg-white flex items-center mb-3">
+            <button className="px-4 py-2.5 rounded-full bg-white flex items-center hover:opacity-80 mb-3">
               <span>LEARN MORE</span>
-              <img src="/icons/arrow.svg" alt="Arrow" />
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5 text-black transform rotate-45">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19V5m-7 7l7-7 7 7" />
+              </svg>
             </button>
           </div>
         </div>

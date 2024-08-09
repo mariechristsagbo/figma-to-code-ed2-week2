@@ -1,3 +1,4 @@
+import { JetBrains_Mono } from "next/font/google";
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -11,9 +12,9 @@ const config: Config = {
         fontFamily: {
           chillax: ['var(--font-chillax)'],
           archivo: ['var(--font-archivo)'],
+          jetbrains: ['var(--font-jetbrains)'],
         },
       backgroundImage: {
-          "hero" : "url('/images/hero.jpg')",
           "collection-men1" : "url('/images/collection-men1.svg')",
           "collection-men2" : "url('/images/collection-2.svg')",
       },
