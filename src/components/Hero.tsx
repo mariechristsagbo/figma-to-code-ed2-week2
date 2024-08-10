@@ -1,32 +1,27 @@
 export default function Hero() {
   return (
-    <section className="w-full text-white font-archivo">
-      <div
-        className="lg:max-w-7xl rounded-52 py-12 my-10 text-center relative overflow-hidden px-4 mx-2 lg:mx-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: "url('/images/hero.svg')",
-          backgroundPosition: 'center',
-          backgroundSize: 'cover',
-        }}
-      >
+    <section className="text-white font-archivo">
+      <div className="rounded-52 py-12 text-center h-25 sm:h-30 relative overflow-hidden px-4 mx-2 lg:mx-0 bg-hero bg-cover bg-center bg-no-repeat">
+
         <div className="absolute inset-0 bg-b-black bg-opacity-40"></div>
 
-        <div className="relative flex flex-col space-y-5 px-4 py-12">
+        <div className="relative flex flex-col space-y-3 px-2 sm:px-4 sm:py-12 sm:space-y-5 items-center justify-center h-full">
           <div className="flex items-center justify-center space-x-4">
             <div className="flex items-center justify-center space-x-4">
               <div className="h-px bg-white w-10"></div>
-              <p className="text-white text-sm">We bring new fashion to the world</p>
+              <p className="text-white text-sm text-center">We bring new fashion to the world</p>
               <div className="h-px bg-white w-10"></div>
             </div>
-
           </div>
 
-          <h1 className="md:text-5xl text-2xl font-extrabold leading-normal font-chillax">
+          <h1 className="md:text-5xl sm:text-4xl text-2xl font-extrabold leading-normal font-chillax text-center">
             DISCOVER THE LATEST FASHION TRENDS <br /> HERE
           </h1>
-          <p className="max-w-2xl mx-auto text-sm sm:text-base lg:text-lg">
+
+          <p className="max-w-2xl mx-auto text-sm sm:text-base lg:text-lg text-center">
             Discover a world of fashion with our meticulously curated outfits. Shop now to update your wardrobe with chic and stylish outfits.
           </p>
+
           <div className="flex items-center justify-center">
             <button className="bg-white text-b-black p-4 py-3 text-sm rounded-full font-semibold hover:opacity-80">
               Start shopping
@@ -38,6 +33,7 @@ export default function Hero() {
             </button>
           </div>
         </div>
+
       </div>
     </section>
   );

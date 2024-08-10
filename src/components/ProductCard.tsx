@@ -11,7 +11,7 @@ export function ProductCard({ product }: { product: Product }) {
   };
 
   return (
-    <div className="flex flex-col overflow-hidden rounded-lg ">
+    <div className="flex flex-col overflow-hidden rounded-lg max-w-xs mx-auto">
       <div className="relative group">
         <Image
           src={product.images.edges[0].node.src}

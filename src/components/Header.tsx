@@ -49,7 +49,7 @@ export default function Header() {
           <button onClick={() => setIsOpen(!isOpen)}>
             <Image src={isOpen ? "/icons/close.svg" : "/icons/menu.svg"} alt="Menu" width={24} height={24} />
           </button>
-          <h1 className="font-chillax text-outline sm:text-4xl text-3xl font-semibold">BALLAMAS</h1>
+          <h1 className="font-chillax text-outline sm:text-4xl text-3xl font-semibold" onClick={() => router.push('/')}>BALLAMAS</h1>
           <div className="flex items-center space-x-4">
             <Image src="/icons/search.svg" alt="Search" width={24} height={24} />
             <Image src="/icons/cart.svg" alt="Cart" width={24} height={24} />

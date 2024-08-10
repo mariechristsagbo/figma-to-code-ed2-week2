@@ -15,6 +15,7 @@ const config: Config = {
           jetbrains: ['var(--font-jetbrains)'],
         },
       backgroundImage: {
+          "hero" : "url('/images/hero.svg')",
           "collection-men1" : "url('/images/collection-men1.svg')",
           "collection-men2" : "url('/images/collection-2.svg')",
       },
@@ -28,6 +29,11 @@ const config: Config = {
       borderRadius: {
         '52': '52px',
         '32' : '32px',
+      },
+
+      height:{
+        '30': '30em',
+        '25': '25em',
       },
     },
   },
