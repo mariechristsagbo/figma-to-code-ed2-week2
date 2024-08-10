@@ -29,7 +29,7 @@ export const COLLECTION_PRODUCTS_QUERY = (handle: string) => `
   query {
     collectionByHandle(handle: "${handle}") {
       title
-      products(first: 6) {
+      products(first: 9) {
         edges {
           node {
             id
