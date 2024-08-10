@@ -28,7 +28,7 @@ const config: Config = {
       borderRadius: {
         '52': '52px',
         '32' : '32px',
-      }
+      },
     },
   },
   plugins: [],

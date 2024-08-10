@@ -52,9 +52,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
             </div>
           </div>
         ) : (
-          <div>
-            <p className="text-2xl"></p>
-          </div>
+          <div></div>
         )}
 
 

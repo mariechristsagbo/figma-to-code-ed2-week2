@@ -11,12 +11,12 @@ export function ProductCard({ product }: { product: Product }) {
   };
 
   return (
-    <div className="flex flex-col mx-auto overflow-hidden rounded-lg p-4 max-w-xl">
+    <div className="flex flex-col overflow-hidden rounded-lg ">
       <div className="relative group">
         <Image
           src={product.images.edges[0].node.src}
           alt={product.title}
-          width={322}
+          width={350}
           height={405}
           className="object-cover sm:w-[322px] sm:h-[405px] rounded-32"
         />
@@ -25,11 +25,11 @@ export function ProductCard({ product }: { product: Product }) {
           GET OFF 20%
         </span>
         <div className="absolute bottom-2 left-2 right-2 flex items-center justify-center space-x-2 mb-3 opacity-0 group-hover:opacity-100 transition-opacity">
-          <button className="flex items-center font-jetbrains justify-center bg-white text-black text-xs font-extrabold py-3 px-4 rounded-full shadow-md" onClick={handleClick}>
+          <button className="flex items-center font-jetbrains justify-center bg-white text-black text-xs font-extrabold py-3 px-4 rounded-full shadow-md w-1/2" onClick={handleClick}>
             <img src="/icons/cart-1.svg" alt="Add to Cart" className="mr-2" />
             ADD TO CART
           </button>
-          <button className="flex items-center border font-bold border-white text-white justify-center text-b-white text-xs py-3.5 px-5 rounded-full">
+          <button className="flex items-center border font-bold border-white text-white justify-center text-b-white text-xs py-3.5 px-5 rounded-full w-1/2">
             BUY NOW
           </button>
         </div>
