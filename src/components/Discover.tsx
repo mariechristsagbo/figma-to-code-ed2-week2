@@ -12,7 +12,7 @@ export default function Discover() {
   const filtersCategories = useFilterCategories();
 
 
-  if (error) return <p className="text-b-black font-semibold font-chillax text-center py-10">{error}</p>;
+  // if (error) return <p className="text-b-black font-semibold font-chillax text-center py-10">{error}</p>;
 
   return (
     <section className='font-archivo my-10'>
@@ -37,7 +37,7 @@ export default function Discover() {
 
       <div className="lg:max-w-5xl max-w-2xl mx-auto py-10">
         {loading ? (
-          <div className="flex justify-center items-center min-h-[300px]">
+          <div className="flex justify-center items-center min-h-[500px]">
             <Loader />
           </div>
         ) : (

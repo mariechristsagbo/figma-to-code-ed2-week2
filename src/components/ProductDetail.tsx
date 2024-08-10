@@ -2,22 +2,32 @@
 import React, { useState } from 'react';
 import { DetailedProduct } from '@/types/Product';
 import Image from 'next/image';
-import { colors, sizes } from '@/constants';
+import { sizes } from '@/constants';
 
 interface ProductDetailProps {
   product: DetailedProduct;
 }
 
 const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
-  const [selectedColor, setSelectedColor] = useState('Green');
   const [selectedSize, setSelectedSize] = useState('XS');
+  const [selectedVariant, setSelectedVariant] = useState(product.variants.edges[0]);
 
 
+  const handleColorChange = (variant: any) => {
+    setSelectedVariant(variant);
+  };
+
+  const getColorFromTitle = (title: string) => {
+    const parts = title.split(" / ");
+    return parts.length > 1 ? parts[1].toLowerCase() : null;
+  };
+
+  const colorVariants = product.variants.edges.filter(variant => getColorFromTitle(variant.node.title));
 
   return (
     <div className="flex items-center gap-10 lg:flex-row flex-col font-archivo">
       <Image
-        src={product.featuredImage.url}
+        src={selectedVariant.node.image.url}
         alt={product.title}
         width={579}
         height={600}
@@ -26,21 +36,27 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
 
       <div className="flex flex-col space-y-4 p-4">
         <h1 className="text-4xl font-semibold font-chillax">{product.title}</h1>
-        <p className="font-medium text-3xl">{product.variants.edges[0].node.price.currencyCode} ${product.variants.edges[0].node.price.amount}</p>
-
-        <div>
-          <p className="text-2xl">Color: {selectedColor}</p>
-          <div className="flex space-x-4">
-            {colors.map((color) => (
-              <button
-                key={color.name}
-                onClick={() => setSelectedColor(color.name)}
-                className={`w-6 h-6 rounded-full border-2 my-3 ${selectedColor === color.name ? 'border-gray-500' : 'border-transparent'}`}
-                style={{ backgroundColor: color.code }}
-              />
-            ))}
+        <p className="font-medium text-3xl">{selectedVariant.node.price.currencyCode} ${selectedVariant.node.price.amount}</p>
+        {colorVariants.length > 0 ? (
+          <div>
+            <p className="text-2xl">Color: {selectedVariant.node.title.split(" / ")[1] || "N/A"}</p>
+            <div className="flex space-x-4">
+              {colorVariants.map((variant) => (
+                <button
+                  key={variant.node.id}
+                  onClick={() => handleColorChange(variant)}
+                  className={`w-6 h-6 rounded-full border-2 my-3 ${selectedVariant.node.id === variant.node.id ? 'border-gray-500' : 'border-gray-200'}`}
+                  style={{ backgroundColor: getColorFromTitle(variant.node.title) || '#ccc' }}
+                />
+              ))}
+            </div>
           </div>
-        </div>
+        ) : (
+          <div>
+            <p className="text-2xl"></p>
+          </div>
+        )}
+
 
         <div>
       <p className="text-2xl mb-3">Size:</p>

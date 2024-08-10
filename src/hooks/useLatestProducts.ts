@@ -12,7 +12,7 @@ export function useLatestProducts() {
       try {
         const query = `
           query {
-    products(first: 10, sortKey: CREATED_AT, reverse: true) {
+    products(first: 8, sortKey: CREATED_AT, reverse: true) {
       edges {
         node {
           id

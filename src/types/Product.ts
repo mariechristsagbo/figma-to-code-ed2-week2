@@ -52,6 +52,7 @@ export interface Price {
 }
 
 export interface Variant {
+  [x: string]: any;
   id: string;
   title: string;
   image: Image;

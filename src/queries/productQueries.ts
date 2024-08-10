@@ -1,6 +1,6 @@
 export const ALL_PRODUCTS_QUERY = `
   query {
-    products(first: 9) {
+    products(first: 6) {
       edges {
         node {
           id

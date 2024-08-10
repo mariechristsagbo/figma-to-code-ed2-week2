@@ -25,13 +25,6 @@ export const social_media = ["Instagram", "Facebook", "YouTube", "X"];
 
 export const sizes =["XS", "S", "M", "L", "XL"];
 
-export const colors = [
-    { name: "Green", code: "#355E3B" },
-    { name: "Purple", code: "#4B3E75" },
-    { name: "Teal", code: "#355E63" },
-    { name: "Brown", code: "#726E51" }
-];
-
 export const shippingMethods = [
   {
     name: "Free Shipping",

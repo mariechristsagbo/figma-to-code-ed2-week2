@@ -21,9 +21,15 @@ function ProductPage({ params }: { params: { productId: string } }) {
             featuredImage {
               url
             }
-            variants(first: 1) {
+            variants(first: 5) {
               edges {
+                cursor
                 node {
+                  id
+                  title
+                  image {
+                    url
+                  }
                   price {
                     amount
                     currencyCode
@@ -57,12 +63,10 @@ function ProductPage({ params }: { params: { productId: string } }) {
       });
   }, [params.productId]);
 
- 
-
   return (
     <div className="max-w-7xl mx-auto py-10 px-4">
       {loading ? (
-        <div className="flex justify-center items-center min-h-[300px]">
+        <div className="flex justify-center items-center min-h-[800px]">
           <Loader />
         </div>
       ) : (

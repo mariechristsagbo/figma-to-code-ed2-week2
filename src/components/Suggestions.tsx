@@ -14,7 +14,7 @@ export default function Suggestions() {
       <div className="lg:max-w-full max-w-2xl mx-auto py-10">
         {loading ? (
           <div className="flex justify-center items-center min-h-[300px]">
-            <Loader />
+            {/* <Loader /> */}
           </div>
         ) : (
           <div className="flex overflow-x-auto no-scrollbar space-x-6">

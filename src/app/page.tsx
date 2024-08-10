@@ -4,7 +4,7 @@ import Collection from "@/components/Collection";
 
 export default function Home() {
   return (
-    <main className="max-w-7xl mx-auto px-4">
+    <main className="max-w-7xl mx-auto px-4 py-10">
       <Hero />
       <Discover />
       <Collection />
