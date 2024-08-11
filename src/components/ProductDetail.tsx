@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { DetailedProduct } from '@/types/Product';
 import Image from 'next/image';
 import { sizes } from '@/constants';
+import { useRouter } from 'next/navigation';
 
 interface ProductDetailProps {
   product: DetailedProduct;
@@ -11,6 +12,8 @@ interface ProductDetailProps {
 const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
   const [selectedSize, setSelectedSize] = useState('XS');
   const [selectedVariant, setSelectedVariant] = useState(product.variants.edges[0]);
+  const [isAddedToCart, setIsAddedToCart] = useState(false);
+  const router = useRouter();
 
   const handleColorChange = (variant: any) => {
     setSelectedVariant(variant);
@@ -30,7 +33,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
       description: selectedVariant.node.title.split(" / ")[1] || "N/A",
       price: parseFloat(selectedVariant.node.price.amount),
       quantity: 1,
-      size: selectedSize
+      size: selectedSize,
     };
 
     const existingProductIndex = cart.findIndex((item: any) => item.id === productToAdd.id);
@@ -43,10 +46,14 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
 
     localStorage.setItem('cart', JSON.stringify(cart));
 
-    const event = new Event('cartUpdated');
+    const event = new CustomEvent('cartUpdated');
     window.dispatchEvent(event);
 
-    alert('Product added to cart!');
+    setIsAddedToCart(true);
+  };
+
+  const handleViewCart = () => {
+    router.push('/cart');
   };
 
   const colorVariants = product.variants.edges.filter(variant => getColorFromTitle(variant.node.title));
@@ -109,9 +116,9 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
 
           <button
             className='px-8 py-3 rounded-full transition-colors border border-b-black hover:bg-b-black hover:text-white w-1/2 sm:text-sm text-[10px]'
-            onClick={addToCart}
+            onClick={isAddedToCart ? handleViewCart : addToCart}
           >
-            ADD TO CART
+            {isAddedToCart ? 'VIEW CART' : 'ADD TO CART'}
           </button>
         </div>
 

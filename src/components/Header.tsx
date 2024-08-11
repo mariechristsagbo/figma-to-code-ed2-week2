@@ -16,15 +16,14 @@ export default function Header() {
       setCartCount(cartItems.reduce((acc: number, item: any) => acc + item.quantity, 0));
     };
 
-    
     updateCartCount();
 
-    const handleStorageChange = () => updateCartCount();
+    const handleCartUpdated = () => updateCartCount();
 
-    window.addEventListener('storage', handleStorageChange);
+    window.addEventListener('cartUpdated', handleCartUpdated);
 
     return () => {
-      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('cartUpdated', handleCartUpdated);
     };
   }, []);
 
@@ -93,7 +92,7 @@ export default function Header() {
                   <Image alt={item.name} src={item.icon} width={20} height={20} />
                 ) : null}
                 {item.name.startsWith("Cart") ? (
-                  <span>{`Cart (${cartCount})`}</span>
+                  <span onClick={() => router.push('/cart')}>{`Cart (${cartCount})`}</span>
                 ) : (
                   <span>{item.name}</span>
                 )}
