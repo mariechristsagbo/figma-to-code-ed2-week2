@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DetailedProduct } from '@/types/Product';
 import Image from 'next/image';
 import { sizes } from '@/constants';
@@ -14,6 +14,12 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
   const [selectedVariant, setSelectedVariant] = useState(product.variants.edges[0]);
   const [isAddedToCart, setIsAddedToCart] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {
+    const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    const existsInCart = cart.some((item: any) => item.id === selectedVariant.node.id);
+    setIsAddedToCart(existsInCart);
+  }, [selectedVariant]);
 
   const handleColorChange = (variant: any) => {
     setSelectedVariant(variant);

@@ -37,7 +37,7 @@ export default function Discover() {
 
       <div className="lg:max-w-5xl max-w-2xl mx-auto py-10">
         {loading ? (
-          <div className="flex justify-center items-center min-h-[500px]">
+          <div className="flex justify-center items-center min-h-[800px]">
             <Loader />
           </div>
         ) : (

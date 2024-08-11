@@ -23,7 +23,6 @@ function ProductPage({ params }: { params: { productId: string } }) {
             }
             variants(first: 5) {
               edges {
-                cursor
                 node {
                   id
                   title
@@ -41,40 +40,40 @@ function ProductPage({ params }: { params: { productId: string } }) {
         }
       `;
 
-      const response = await fetch('https://mock.shop/api', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ query }),
-      });
+      try {
+        const response = await fetch('https://mock.shop/api', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ query }),
+        });
 
-      const result = await response.json();
-      return result.data.product as DetailedProduct;
+        const result = await response.json();
+        return result.data.product as DetailedProduct;
+      } catch (error) {
+        console.error("Error fetching product:", error);
+        throw error;
+      }
     };
 
     fetchProductById(params.productId)
-      .then((data) => {
-        setProduct(data);
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
-      });
+      .then((data) => setProduct(data))
+      .catch((error) => console.error("Failed to fetch product:", error))
+      .finally(() => setLoading(false));
   }, [params.productId]);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center min-h-[800px]">
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-7xl mx-auto py-10 px-4">
-      {loading ? (
-        <div className="flex justify-center items-center min-h-[800px]">
-          <Loader />
-        </div>
-      ) : (
-        <div>
-          {product && <ProductDetail product={product} />}
-        </div>
-      )}
-
+      {product && <ProductDetail product={product} />}
       <Suggestions />
     </div>
   );
