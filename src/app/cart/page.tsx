@@ -31,9 +31,9 @@ export default function CartPage() {
 
     return (
         <section className='font-archivo max-w-7xl mx-auto px-4 pt-5 pb-14 text-b-black'>
-            <div className='flex items-center gap-8 justify-center flex-col lg:flex-row'>
+            <div className='flex items-start gap-8 justify-center flex-col lg:flex-row py-10'>
                 <div className='w-full lg:w-3/4'>
-                    <div className='flex justify-between py-8'>
+                    <div className='flex justify-between'>
                         <h1 className='font-chillax font-semibold text-2xl'>Cart ({cart.length})</h1>
                         <button onClick={() => setCart([])} className='flex items-center gap-1 text-b-dark-gray text-xs bg-gray-200 py-1 px-2.5 rounded-full'>
                             <Image src="/icons/trash.svg" alt="Trash" width={16} height={16} className='w-4 h-4' />
@@ -41,7 +41,7 @@ export default function CartPage() {
                         </button>
                     </div>
 
-                    <div className="flex-grow">
+                    <div className="flex-grow py-5">
                         <table className="w-full text-left">
                             <thead>
                                 <tr className="border-b text-b-dark-gray">
