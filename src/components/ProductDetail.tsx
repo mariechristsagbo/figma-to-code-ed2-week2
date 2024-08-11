@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React, { useState } from 'react';
 import { DetailedProduct } from '@/types/Product';
 import Image from 'next/image';
@@ -12,7 +12,6 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
   const [selectedSize, setSelectedSize] = useState('XS');
   const [selectedVariant, setSelectedVariant] = useState(product.variants.edges[0]);
 
-
   const handleColorChange = (variant: any) => {
     setSelectedVariant(variant);
   };
@@ -20,6 +19,34 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
   const getColorFromTitle = (title: string) => {
     const parts = title.split(" / ");
     return parts.length > 1 ? parts[1].toLowerCase() : null;
+  };
+
+  const addToCart = () => {
+    const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    const productToAdd = {
+      id: selectedVariant.node.id,
+      name: product.title,
+      image: selectedVariant.node.image.url,
+      description: selectedVariant.node.title.split(" / ")[1] || "N/A",
+      price: parseFloat(selectedVariant.node.price.amount),
+      quantity: 1,
+      size: selectedSize
+    };
+
+    const existingProductIndex = cart.findIndex((item: any) => item.id === productToAdd.id);
+
+    if (existingProductIndex >= 0) {
+      cart[existingProductIndex].quantity += 1;
+    } else {
+      cart.push(productToAdd);
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    const event = new Event('cartUpdated');
+    window.dispatchEvent(event);
+
+    alert('Product added to cart!');
   };
 
   const colorVariants = product.variants.edges.filter(variant => getColorFromTitle(variant.node.title));
@@ -55,33 +82,35 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
           <div></div>
         )}
 
-
         <div>
-      <p className="text-2xl mb-3">Size:</p>
-      <div className="flex flex-wrap gap-3">
-        {sizes.map((size) => (
-          <button
-            key={size}
-            onClick={() => setSelectedSize(size)}
-            className={`px-7 py-3 rounded-full transition-colors 
-              ${selectedSize === size
-                ? 'bg-b-black text-white'
-                : 'text-b-black border border-b-black hover:bg-b-black hover:text-white'
-              }`}>
-            <p className='text-lg'>
-              {size}
-            </p>
-          </button>
-        ))}
-      </div>
-    </div>
+          <p className="text-2xl mb-3">Size:</p>
+          <div className="flex flex-wrap gap-3">
+            {sizes.map((size) => (
+              <button
+                key={size}
+                onClick={() => setSelectedSize(size)}
+                className={`px-7 py-3 rounded-full transition-colors 
+                  ${selectedSize === size
+                    ? 'bg-b-black text-white'
+                    : 'text-b-black border border-b-black hover:bg-b-black hover:text-white'
+                  }`}>
+                <p className='text-lg'>
+                  {size}
+                </p>
+              </button>
+            ))}
+          </div>
+        </div>
 
         <div className="flex items-center gap-4 py-2">
           <button className='px-8 py-3 rounded-full border border-b-black bg-b-black text-white w-1/2 sm:text-sm text-xs'>
             BUY NOW
           </button>
 
-          <button className='px-8 py-3 rounded-full transition-colors border border-b-black hover:bg-b-black hover:text-white w-1/2 sm:text-sm text-[10px]'>
+          <button
+            className='px-8 py-3 rounded-full transition-colors border border-b-black hover:bg-b-black hover:text-white w-1/2 sm:text-sm text-[10px]'
+            onClick={addToCart}
+          >
             ADD TO CART
           </button>
         </div>

@@ -16,7 +16,7 @@ export const useFilterCategories = () => {
         body: JSON.stringify({
           query: `
             query {
-              products(first: 50, query: "tag:Accessories") {
+              products(first: 9, query: "tag:Accessories") {
                 edges {
                   node {
                     id
@@ -37,7 +37,7 @@ export const useFilterCategories = () => {
           query: `
             query {
               collectionByHandle(handle: "featured") {
-                products(first: 50) {
+                products(first: 9) {
                   edges {
                     node {
                       id
@@ -61,7 +61,7 @@ export const useFilterCategories = () => {
         body: JSON.stringify({
           query: `
             query {
-              products(first: 50, query: "tag:Unisex") {
+              products(first: 9, query: "tag:Unisex") {
                 edges {
                   node {
                     id

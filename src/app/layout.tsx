@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import { PropsWithChildren } from "react";
 import localFont from 'next/font/local';
 import { JetBrains_Mono } from 'next/font/google';
+import { CartProvider } from "@/contexts/CartContext";
 
 const chillax = localFont({
   src: '../../public/fonts/Chillax-Variable.ttf',
@@ -32,9 +33,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${chillax.variable} ${archivo.variable} ${jetbrainsMono.variable}`}>
-        <Header />
-        {children}
-        <Footer />
+        <CartProvider>
+          <Header />
+          {children}
+          <Footer />
+        </CartProvider>
       </body>
     </html>
   );

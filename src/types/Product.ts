@@ -10,6 +10,10 @@ export interface PriceRange {
 }
 
 export interface Product {
+  name: string;
+  image: string;
+  price: number;
+  quantity: number;
   id: string;
   title: string;
   description: string;

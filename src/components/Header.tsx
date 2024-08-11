@@ -1,13 +1,32 @@
-"use client";
-
-import { useState } from "react";
+'use client';
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { NAV_ITEMS, ACTION_ITEMS, ACTION_MOBILE_ITEMS } from "@/constants";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
   const router = useRouter();
+
+  useEffect(() => {
+    const updateCartCount = () => {
+      const savedCart = localStorage.getItem('cart');
+      const cartItems = savedCart ? JSON.parse(savedCart) : [];
+      setCartCount(cartItems.reduce((acc: number, item: any) => acc + item.quantity, 0));
+    };
+
+    
+    updateCartCount();
+
+    const handleStorageChange = () => updateCartCount();
+
+    window.addEventListener('storage', handleStorageChange);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
 
   return (
     <header className="text-b-black font-archivo">
@@ -36,7 +55,11 @@ export default function Header() {
                   {item.icon ? (
                     <Image alt={item.name} src={item.icon} width={20} height={20} />
                   ) : null}
-                  <span>{item.name}</span>
+                  {item.name.startsWith("Cart") ? (
+                    <span onClick={() => router.push('/cart')}>{`Cart (${cartCount})`}</span>
+                  ) : (
+                    <span>{item.name}</span>
+                  )}
                 </li>
               ))}
             </ul>
@@ -69,7 +92,11 @@ export default function Header() {
                 {item.icon ? (
                   <Image alt={item.name} src={item.icon} width={20} height={20} />
                 ) : null}
-                <span>{item.name}</span>
+                {item.name.startsWith("Cart") ? (
+                  <span>{`Cart (${cartCount})`}</span>
+                ) : (
+                  <span>{item.name}</span>
+                )}
               </li>
             ))}
           </ul>
