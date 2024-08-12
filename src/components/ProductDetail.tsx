@@ -1,10 +1,11 @@
 'use client';
+
 import React, { useState, useEffect } from 'react';
 import { DetailedProduct } from '@/types/Product';
 import Image from 'next/image';
 import { sizes } from '@/constants';
 import { useRouter } from 'next/navigation';
-
+import { useShoppingCart } from '@/contexts/ShoppingCartContext';
 interface ProductDetailProps {
   product: DetailedProduct;
 }
@@ -13,13 +14,13 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
   const [selectedSize, setSelectedSize] = useState('XS');
   const [selectedVariant, setSelectedVariant] = useState(product.variants.edges[0]);
   const [isAddedToCart, setIsAddedToCart] = useState(false);
+  const { cart, addToCart } = useShoppingCart();
   const router = useRouter();
 
   useEffect(() => {
-    const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-    const existsInCart = cart.some((item: any) => item.id === selectedVariant.node.id);
+    const existsInCart = cart.some((item) => item.id === selectedVariant.node.id);
     setIsAddedToCart(existsInCart);
-  }, [selectedVariant]);
+  }, [cart, selectedVariant]);
 
   const handleColorChange = (variant: any) => {
     setSelectedVariant(variant);
@@ -30,8 +31,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
     return parts.length > 1 ? parts[1].toLowerCase() : null;
   };
 
-  const addToCart = () => {
-    const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+  const handleAddToCart = () => {
     const productToAdd = {
       id: selectedVariant.node.id,
       name: product.title,
@@ -42,19 +42,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
       size: selectedSize,
     };
 
-    const existingProductIndex = cart.findIndex((item: any) => item.id === productToAdd.id);
-
-    if (existingProductIndex >= 0) {
-      cart[existingProductIndex].quantity += 1;
-    } else {
-      cart.push(productToAdd);
-    }
-
-    localStorage.setItem('cart', JSON.stringify(cart));
-
-    const event = new CustomEvent('cartUpdated');
-    window.dispatchEvent(event);
-
+    addToCart(productToAdd);
     setIsAddedToCart(true);
   };
 
@@ -122,7 +110,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
 
           <button
             className='px-8 py-3 rounded-full transition-colors border border-b-black hover:bg-b-black hover:text-white w-1/2 sm:text-sm text-[10px]'
-            onClick={isAddedToCart ? handleViewCart : addToCart}
+            onClick={isAddedToCart ? handleViewCart : handleAddToCart}
           >
             {isAddedToCart ? 'VIEW CART' : 'ADD TO CART'}
           </button>

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { products, categories, social_media } from "@/constants";
 
 export default function Footer() {
@@ -7,7 +8,13 @@ export default function Footer() {
         <div className="grid lg:grid-cols-2 grid-cols-1">
           
           <div className='flex flex-col space-y-4 max-w-lg mr-auto mb-8'>
-            <h1 className="font-chillax text-outline-white text-4xl font-semibold">BALLAMAS</h1>
+          <Image
+           alt="Ballamas"
+           src="/images/logo-white.svg"
+           width={150}
+           height={100}
+           className="cursor-pointer"/>
+
             <p className='text-b-gray'>Subscribe to our newsletter for upcoming products and best discounts on all items</p>
             <div className='flex flex-row gap-4'>
               <input

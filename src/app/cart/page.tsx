@@ -1,30 +1,18 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { Product } from '@/types/Product';
+import { useRouter } from 'next/navigation';
+import { useShoppingCart } from '@/contexts/ShoppingCartContext';
 
 export default function CartPage() {
-    const [cart, setCart] = useState<Product[]>(() => {
-        if (typeof window !== 'undefined') {
-            const savedCart = localStorage.getItem('cart');
-            return savedCart ? JSON.parse(savedCart) : [];
-        }
-        return [];
-    });
-
-    useEffect(() => {
-        localStorage.setItem('cart', JSON.stringify(cart));
-    }, [cart]);
+    const router = useRouter();
+    const { cart, updateQuantity, removeFromCart, clearCart } = useShoppingCart(); // Utilisation du contexte
 
     const handleQuantityChange = (id: string, change: number) => {
-        setCart(cart.map(product =>
-            product.id === id ? { ...product, quantity: Math.max(1, product.quantity + change) } : product
-        ));
-    };
-
-    const handleRemoveProduct = (id: string) => {
-        setCart(cart.filter(product => product.id !== id));
+        const item = cart.find(product => product.id === id);
+        if (item) {
+            updateQuantity(id, item.quantity + change);
+        }
     };
 
     const totalAmount = cart.reduce((total, product) => total + product.price * product.quantity, 0);
@@ -35,7 +23,7 @@ export default function CartPage() {
                 <div className='w-full lg:w-3/4'>
                     <div className='flex justify-between'>
                         <h1 className='font-chillax font-semibold text-2xl'>Cart ({cart.length})</h1>
-                        <button onClick={() => setCart([])} className='flex items-center gap-1 text-b-dark-gray text-xs bg-gray-200 py-1 px-2.5 rounded-full'>
+                        <button onClick={clearCart} className='flex items-center gap-1 text-b-dark-gray text-xs bg-gray-200 py-1 px-2.5 rounded-full'>
                             <Image src="/icons/trash.svg" alt="Trash" width={16} height={16} className='w-4 h-4' />
                             <span>Clear Cart</span>
                         </button>
@@ -77,7 +65,7 @@ export default function CartPage() {
                                                     <button onClick={() => handleQuantityChange(product.id, 1)}>
                                                         <Image alt='Add' src='/icons/increment.svg' width={21} height={15} />
                                                     </button>
-                                                    <button onClick={() => handleRemoveProduct(product.id)} className="sm:p-3  p-2 bg-gray-200 rounded-full">
+                                                    <button onClick={() => removeFromCart(product.id)} className="sm:p-3 p-2 bg-gray-200 rounded-full">
                                                         <Image src="/icons/trash.svg" alt="Trash" width={16} height={16} />
                                                     </button>
                                                 </div>
@@ -109,7 +97,7 @@ export default function CartPage() {
                         <span>Order total</span>
                         <span>${totalAmount}.00</span>
                     </div>
-                    <button className="mt-4 w-full py-3 bg-black text-white rounded-full">Checkout now</button>
+                    <button className="mt-4 w-full py-3 bg-black text-white rounded-full" onClick={() => router.push('/checkout')}>Checkout now</button>
                 </div>
             </div>
         </section>
