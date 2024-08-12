@@ -7,14 +7,15 @@ import { shippingMethods, formFields, paymentMethods } from '@/constants';
 
 export default function CheckoutPage() {
   const router = useRouter();
-  const { cart } = useShoppingCart();
+  const { cart, clearCart } = useShoppingCart();
   const [selectedShippingMethod, setSelectedShippingMethod] = useState(shippingMethods[0]);
 
   const totalAmount = cart.reduce((total, product) => total + product.price * product.quantity, 0);
   const shippingCost = parseFloat(selectedShippingMethod.price.replace('$', ''));
 
   const handlePayment = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault(); 
+    event.preventDefault();
+    clearCart();
     router.push('/confirmation');
   };
 
