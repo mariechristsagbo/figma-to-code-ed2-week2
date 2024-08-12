@@ -1,12 +1,23 @@
 'use client';
-
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { useShoppingCart } from '@/contexts/ShoppingCartContext';
 import Image from 'next/image';
 import { shippingMethods, formFields, paymentMethods } from '@/constants';
 
 export default function CheckoutPage() {
+  const router = useRouter();
   const { cart } = useShoppingCart();
+  const [selectedShippingMethod, setSelectedShippingMethod] = useState(shippingMethods[0]);
+
   const totalAmount = cart.reduce((total, product) => total + product.price * product.quantity, 0);
+  const shippingCost = parseFloat(selectedShippingMethod.price.replace('$', ''));
+
+  const handlePayment = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault(); 
+    router.push('/confirmation');
+  };
+
 
   return (
     <section className="font-archivo max-w-7xl mx-auto px-4 pt-6 pb-12">
@@ -55,27 +66,19 @@ export default function CheckoutPage() {
               </a>{' '}
               <span className="text-b-dark-gray">to get better offer</span>
             </p>
-            <div className="mt-6 pt-4 text-b-dark-gray">
-              <div className="flex justify-between">
-                <span>Subtotal</span>
-                <span>${totalAmount}.00</span>
-              </div>
-              <div className="flex justify-between mb-2 border-b py-2.5">
-                <span>Discount</span>
-                <span>$0.00</span>
-              </div>
-              <div className="flex justify-between font-semibold text-lg text-b-black">
-                <span>Order total</span>
-                <span>${totalAmount}.00</span>
-              </div>
-            </div>
             <div className="mt-6">
               <h2 className="text-xl font-semibold mb-4">Shipping method</h2>
               <div className="space-y-2">
                 {shippingMethods.map((method, index) => (
                   <label key={index} className="flex items-center justify-between border py-5 rounded-xl px-7">
                     <div className="flex items-center">
-                      <input type="radio" name="shipping" className="form-radio h-5 w-5 text-black" />
+                      <input
+                        type="radio"
+                        name="shipping"
+                        className="form-radio h-5 w-5 text-black"
+                        checked={selectedShippingMethod.name === method.name}
+                        onChange={() => setSelectedShippingMethod(method)}
+                      />
                       <div className="ml-3 flex flex-col">
                         <p>{method.name}</p>
                         <p className="text-b-dark-gray">{method.description}</p>
@@ -89,7 +92,7 @@ export default function CheckoutPage() {
           </div>
         </div>
 
-        <div className="">
+        <div>
           <div className="bg-white p-6 rounded-lg">
             <h2 className="text-md font-semibold mb-4">Payment details</h2>
             <p className="text-b-dark-gray text-sm font-medium my-4">
@@ -110,7 +113,7 @@ export default function CheckoutPage() {
                 ))}
               </div>
 
-              <div className="py-10">
+              <div className="pt-10">
                 <h2 className="text-md font-semibold mb-4">Select payment method</h2>
                 <div className="grid grid-cols-2 gap-3 mb-4">
                   {paymentMethods.map((method, index) => (
@@ -152,13 +155,13 @@ export default function CheckoutPage() {
                   </div>
                 </div>
               </div>
-              <label className="flex items-center my-4">
+              <label className="flex items-center my-8">
                 <input type="checkbox" className="form-checkbox h-4 w-4 text-black" />
                 <span className="ml-2 text-md">Use shipping address as billing address</span>
               </label>
 
-              <button className="w-full py-3 bg-b-black hover:bg-opacity-95 text-white rounded-full flex items-center justify-center">
-                <span className="mr-2 font-semibold">Pay $ {totalAmount}.00</span>
+              <button onClick={handlePayment} className="w-full py-3 bg-b-black hover:bg-opacity-95 text-white rounded-full flex items-center justify-center">
+                <span className="mr-2 font-semibold">Pay $ {(totalAmount + shippingCost).toFixed(2)}</span>
                 <img src="/icons/arrow-right.svg" alt="Arrow" className="w-4 h-4" />
               </button>
             </form>
