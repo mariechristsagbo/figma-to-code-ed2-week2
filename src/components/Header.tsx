@@ -35,7 +35,7 @@ export default function Header() {
         </p>
       </div>
 
-      <div className="border-b max-w-7xl mx-auto py-7 px-4">
+      <div className="max-w-7xl mx-auto py-7 px-4 lg:border-b">
         <div className="lg:flex items-center justify-between hidden">
           <nav>
             <ul className="flex items-center gap-4">
@@ -50,7 +50,9 @@ export default function Header() {
             src="/images/logo.svg"
             width={165}
             height={100}
-            className="cursor-pointer" onClick={() => router.push('/')} />
+            className="cursor-pointer"
+            onClick={() => router.push('/')}
+          />
 
           <nav>
             <ul className="flex items-center gap-4">
@@ -70,9 +72,7 @@ export default function Header() {
           </nav>
         </div>
 
-        {/* Mobile */}
-        <div className="flex items-center justify-between lg:hidden px-4">
-
+        <div className="flex items-center justify-between lg:hidden px-4 border-b pb-5">
           <button onClick={() => setIsOpen(!isOpen)}>
             <Image src={isOpen ? "/icons/close.svg" : "/icons/menu.svg"} alt="Menu" width={25} height={25} />
           </button>
@@ -91,7 +91,7 @@ export default function Header() {
           </div>
         </div>
 
-        <div className={`lg:hidden ${isOpen ? "fixed inset-x-0 top-[8.6rem] z-50 bg-white border h-full" : "hidden"} transition-all duration-300 ease-in-out`}>
+        <div className={`lg:hidden absolute left-0 right-0 bg-white z-50 ${isOpen ? "h-screen" : "h-0 overflow-hidden"} transition-height duration-300 ease-in-out`}>
           <nav className="flex flex-col items-center justify-center gap-4 py-4">
             <ul className="flex flex-col items-center gap-4">
               {NAV_ITEMS.map((item, index) => (
@@ -112,7 +112,8 @@ export default function Header() {
             </ul>
           </nav>
         </div>
-        </div>
+      </div>
+
     </header>
   );
 }
