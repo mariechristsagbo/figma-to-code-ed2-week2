@@ -1,12 +1,14 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useParams } from 'next/navigation';
 import ProductDetail from '@/components/ProductDetail';
 import { DetailedProduct } from '@/types/Product';
 import { Loader } from '@/components/Loader';
 import Suggestions from '@/components/Suggestions';
 
-function ProductPage({ params }: { params: { productId: string } }) {
+function ProductPage() {
+  const { productId } = useParams<{ productId: string }>();
   const [product, setProduct] = useState<DetailedProduct | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -57,11 +59,11 @@ function ProductPage({ params }: { params: { productId: string } }) {
       }
     };
 
-    fetchProductById(params.productId)
+    fetchProductById(productId)
       .then((data) => setProduct(data))
       .catch((error) => console.error("Failed to fetch product:", error))
       .finally(() => setLoading(false));
-  }, [params.productId]);
+  }, [productId]);
 
   if (loading) {
     return (
